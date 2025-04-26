@@ -1,0 +1,69 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--bs-body-bg);
+  }
+  .card {
+    border: none;
+    border-radius: .75rem;
+  }
+  .shadow-sm {
+    box-shadow: 0 .125rem .25rem rgba(0,0,0,.075)!important;
+  }
+  
+  /* Drag-n-drop area */
+  .border-dashed {
+    border-style: dashed!important;
+  }
+  .drag-drop-area {
+    transition: background .2s, border-color .2s;
+    cursor: pointer;
+  }
+  .drag-drop-area.dragover {
+    background-color: rgba(13,110,253, .05);
+    border-color: var(--bs-primary)!important;
+  }
+  
+  /* Table hover эффект */
+  .table-hover tbody tr:hover {
+    background-color: var(--bs-primary-bg-subtle)!important;
+  }
+  
+  /* Подсветка имени файла */
+  #file-name {
+    color: var(--bs-primary);
+    font-style: italic;
+  }
+  
+  html[data-bs-theme="dark"] .navbar {
+    background-color: var(--bs-navbar-bg) !important;
+    border-color: var(--bs-border-color) !important;
+  }
+  html[data-bs-theme="dark"] .navbar .navbar-brand,
+  html[data-bs-theme="dark"] .navbar .btn {
+    color: var(--bs-body-color) !important;
+  }
+  
+  footer {
+    color: var(--bs-body-color);
+  }
+  html[data-bs-theme="dark"] footer {
+    background-color: var(--bs-navbar-bg) !important;
+    border-color: var(--bs-border-color) !important;
+  }
+  html[data-bs-theme="dark"] footer .text-muted {
+    color: var(--bs-body-color) !important;
+  }
+  
+  /* Тёмная тема*/
+  html[data-bs-theme="dark"] {
+    --bs-body-bg: #121214;
+    --bs-body-color: #e1e1e6;
+    --bs-card-bg: #1f1f23;
+    --bs-card-color: #e1e1e6;
+    --bs-table-bg: #1f1f23;
+    --bs-table-striped-bg: #2c2c30;
+    --bs-table-hover-bg: #323238;
+    --bs-navbar-bg: #1f1f23;
+    --bs-border-color: #323238;
+  }
+  

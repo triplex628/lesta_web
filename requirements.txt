@@ -1,0 +1,6 @@
+Flask==2.2.5
+pymorphy2==0.9.1
+nltk==3.8.1
+spacy==3.5.0
+Bootstrap-Flask==2.2.0
+numpy==1.23.5

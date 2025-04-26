@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block title %}Загрузка файла{% endblock %}
+{% block content %}
+  <div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+      <div class="card shadow-sm">
+        <div class="card-body p-4">
+          <h2 class="card-title mb-3 text-center">Загрузите текстовый файл</h2>
+          {% if error %}
+            <div class="alert alert-danger">{{ error }}</div>
+          {% endif %}
+          <form method="post" enctype="multipart/form-data" class="d-grid gap-3">
+            <div class="drag-drop-area border border-dashed rounded p-5 text-center" id="drop-area">
+              <p class="mb-1">Перетащите файл сюда или</p>
+              <button type="button" class="btn btn-outline-primary btn-sm" id="browse-btn">Выбрать файл</button>
+              <input type="file" name="file" accept=".txt" required id="file-input" hidden>
+              <p id="file-name" class="mt-2 text-truncate fw-medium"></p>
+              <p class="small text-muted mt-2">Только .txt, до 5 МБ</p>
+            </div>
+            <button type="submit" class="btn btn-primary btn-lg">Анализировать</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const dropArea = document.getElementById('drop-area');
+    const fileInput = document.getElementById('file-input');
+    const browseBtn = document.getElementById('browse-btn');
+    const fileNameEl = document.getElementById('file-name');
+
+    browseBtn.addEventListener('click', () => fileInput.click());
+    fileInput.addEventListener('change', () => {
+      fileNameEl.textContent = fileInput.files[0]?.name || '';
+    });
+
+    dropArea.addEventListener('dragover', e => {
+      e.preventDefault();
+      dropArea.classList.add('dragover');
+    });
+    dropArea.addEventListener('dragleave', () => {
+      dropArea.classList.remove('dragover');
+    });
+    dropArea.addEventListener('drop', e => {
+      e.preventDefault();
+      dropArea.classList.remove('dragover');
+      fileInput.files = e.dataTransfer.files;
+      fileNameEl.textContent = fileInput.files[0]?.name || '';
+    });
+  </script>
+{% endblock %}

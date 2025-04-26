@@ -1,0 +1,56 @@
+<div id="result-area">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <div>
+        <h2>Топ-слов ({{ total }})</h2>
+        <p class="text-muted small">Файл: <strong>{{ filename }}</strong></p>
+      </div>
+      <button id="new-file-btn" class="btn btn-outline-secondary">← Новый файл</button>
+    </div>
+  
+    <!-- выбор числа записей на странице -->
+    <form id="per-page-form" class="row g-2 mb-3">
+      <div class="col-auto">
+        <label for="per-page-select" class="form-label">На странице</label>
+        <select id="per-page-select" name="per_page" class="form-select">
+          {% for n in [10,20,50] %}
+            <option value="{{ n }}" {% if n == per_page %}selected{% endif %}>{{ n }}</option>
+          {% endfor %}
+        </select>
+      </div>
+    </form>
+  
+    <div class="card shadow-sm">
+      <div class="table-responsive">
+        <table class="table table-hover mb-0">
+          <thead class="table-light">
+            <tr>
+              <th>Слово</th>
+              <th class="text-center">TF</th>
+              <th class="text-center">IDF</th>
+            </tr>
+          </thead>
+          <tbody>
+          {% for row in table %}
+            <tr>
+              <td>{{ row.word }}</td>
+              <td class="text-center">{{ row.tf }}</td>
+              <td class="text-center">{{ row.idf }}</td>
+            </tr>
+          {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  
+    <!-- пагинация -->
+    <nav class="mt-4">
+      <ul class="pagination justify-content-center">
+        {% for p in range(1, (total // per_page) + 2) %}
+          <li class="page-item {% if p == page %}active{% endif %}">
+            <a href="#" class="page-link page-num" data-page="{{ p }}">{{ p }}</a>
+          </li>
+        {% endfor %}
+      </ul>
+    </nav>
+  </div>
+  
